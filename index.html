@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <style>
+            html, body {
+                height: 100%;
+                font-family: Arial;
+                font-size: 2em;
+            }
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #app > div {
+                text-align: center;
+                background: #ccc;
+                border-radius: 20px;
+                padding: 20px;
+                border: thin solid #999;
+            }
+        </style>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{ key_code }}</h1>
+            <div v-show='key' v-text='key'></div>
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    key_code: 'Press a key',
+                    key: ''
+                },
+                created: function () {
+                    document.addEventListener("keydown", this.setKey);
+                },
+                methods: {
+                    setKey: function (e) {
+                        this.key_code = event.which;
+                        this.key = e.key;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
+
+
+
